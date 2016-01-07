@@ -1,0 +1,7 @@
+title Windows 7 Crack
+map --mem /IMG/KON.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+map (hd1) (hd0)
+map --hook
+rootnoverify (fd0)

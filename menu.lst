@@ -1,0 +1,85 @@
+﻿timeout 5
+gfxmenu /Boot/message
+
+title 【1】   CDlinux
+find --set-root /CDlinux/bzImage
+kernel /CDlinux/bzImage CDL_DEV=sdb4 CDL_LANG=zh_CN.UTF-8 quiet vga=0x322
+initrd /CDlinux/initrd
+boot
+
+title 【2】  Windows XP
+find --set-root /ntldr
+chainloader /ntldr
+
+title 【3】  Windows PE
+find --set-root /8PE_MGR
+chainloader /8PE_MGR
+
+title 【3】  Windows 7 Crack
+map --mem /IMG/KON.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+map (hd1) (hd0)
+map --hook
+rootnoverify (fd0)
+
+title 【4】  Windows XP Crack
+find --set-root /crackxp.img
+map --mem /crackxp.img (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title 【5】  Microsoft DOS
+find --set-root /MSDOS.IMG
+map --mem /MSDOS.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title 【6】  MenuetOS (最小系统)
+find --set-root /menuetos.img
+map --mem /menuetos.img (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)
+
+title 【7】  Slitaz-5.0
+find --set-root /slitaz.iso
+map --mem --heads=0 --sectors-per-track=0 (hd0,1)/slitaz.iso (0xff)
+map --hook
+root (0xff)
+loopback loop /slitaz.iso
+kernel /boot/bzImage lang=es_ES kmap=es rw root=/dev/null vga=normal autologin ip=frommedia toram findiso=/slitaz.iso
+initrd /boot/rootfs4.gz /boot/rootfs3.gz /boot/rootfs2.gz /boot/rootfs1.gz
+
+title 【8】  Gparted 分区
+find --set-root /gparted.iso
+map --mem --heads=0 --sectors-per-track=0 (hd0,1)/gparted.iso (0xff)
+map --hook
+root (0xff)
+loopback loop /gparted.iso
+kernel /live/vmlinuz boot=live live-config union=aufs nolocales noprompt vga=788 ip=frommedia toram findiso=/gparted.iso
+initrd /live/initrd.img
+boot
+
+title 【9】  OPENELEC家庭影院 
+find --set-root /KERNEL
+kernel /KERNEL boot=LABEL=OPENELEC disk=LABEL=EXT quiet
+
+title 【10】  引导 Windows 7
+root (hd1,0)
+find --set-root /bootmgr
+chainloader +1
+
+title 【11】  引导 Windows XP
+root (hd1,0)
+find --set-root /ntldr
+chainloader +1
+
+title ----本地硬盘启动----
+map () (hd1)
+map (hd1) ()
+map --rehook
+find --set-root --devices=h /ntldr || find --set-root --devices=h /bootmgr
+chainloader /ntldr || chainloader /bootmgr

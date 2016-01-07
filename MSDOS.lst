@@ -1,0 +1,6 @@
+title Microsoft DOS
+find --set-root /MSDOS.IMG
+map --mem /MSDOS.IMG (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)

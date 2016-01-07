@@ -1,0 +1,6 @@
+title ----±æµÿ”≤≈Ã∆Ù∂Ø----
+map () (hd1)
+map (hd1) ()
+map --rehook
+find --set-root --devices=h /ntldr || find --set-root --devices=h /bootmgr
+chainloader /ntldr || chainloader /bootmgr

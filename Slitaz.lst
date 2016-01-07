@@ -1,0 +1,8 @@
+title Slitaz-5.0
+find --set-root /slitaz.iso
+map --mem --heads=0 --sectors-per-track=0 (hd0,1)/slitaz.iso (0xff)
+map --hook
+root (0xff)
+loopback loop /slitaz.iso
+kernel /boot/bzImage lang=es_ES kmap=es rw root=/dev/null vga=normal autologin ip=frommedia toram findiso=/slitaz.iso
+initrd /boot/rootfs4.gz /boot/rootfs3.gz /boot/rootfs2.gz /boot/rootfs1.gz

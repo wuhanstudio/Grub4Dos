@@ -1,0 +1,4 @@
+title Windows 7
+root (hd1,0)
+find --set-root /bootmgr
+chainloader +1

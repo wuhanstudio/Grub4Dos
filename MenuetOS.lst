@@ -1,0 +1,6 @@
+title MenuetOS
+find --set-root /menuetos.img
+map --mem /menuetos.img (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)

@@ -1,0 +1,9 @@
+title Gparted
+find --set-root /gparted.iso
+map --mem --heads=0 --sectors-per-track=0 (hd0,1)/gparted.iso (0xff)
+map --hook
+root (0xff)
+loopback loop /gparted.iso
+kernel /live/vmlinuz boot=live live-config union=aufs nolocales noprompt vga=788 ip=frommedia toram findiso=/gparted.iso
+initrd /live/initrd.img
+boot

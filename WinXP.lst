@@ -1,0 +1,3 @@
+title Windows XP
+find --set-root /ntldr
+chainloader /ntldr

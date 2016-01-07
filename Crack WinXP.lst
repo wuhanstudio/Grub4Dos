@@ -1,0 +1,6 @@
+title Windows XP Crack
+find --set-root /crackxp.img
+map --mem /crackxp.img (fd0)
+map --hook
+chainloader (fd0)+1
+rootnoverify (fd0)

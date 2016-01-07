@@ -1,0 +1,3 @@
+title OPENELECº“Õ•”∞‘∫ 
+find --set-root /KERNEL
+kernel /KERNEL boot=LABEL=OPENELEC disk=LABEL=EXT quiet
