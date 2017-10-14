@@ -1,6 +1,6 @@
 # Grub4Dos Sample
 
-> 不同类型系统的Grub4Dos引导
+> Menu-entry for different OS
  
 - CDLinux
 - Crack Win7
